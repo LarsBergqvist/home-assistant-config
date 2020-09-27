@@ -1,0 +1,18 @@
+- platform: hue
+  host: 192.168.1.232
+
+- platform: group
+  name: garage_lights
+  entities:
+    - light.right_garage_door
+    - light.left_garage_door
+    - light.side_garage_door
+
+- platform: group
+  name: out_ceil_lights
+  entities:
+    - light.outdoor_ceiling_1
+    - light.outdoor_ceiling_2
+    - light.outdoor_ceiling_3
+    - light.laundry_door
+    - light.spare_bulb

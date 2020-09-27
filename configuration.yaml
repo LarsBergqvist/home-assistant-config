@@ -1,0 +1,109 @@
+homeassistant:
+  name: Hasb
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 38
+  unit_system: metric
+  time_zone: Europe/Stockholm
+  customize: !include customization.yaml
+  whitelist_external_dirs:
+    - /tmp
+
+config:
+
+mobile_app:
+
+map:
+
+system_health:
+
+frontend:
+#  themes: !include themes.yaml
+
+http:
+#   ssl_certificate: !secret ssl_certificate
+#   ssl_key: !secret ssl_key
+#   base_url: !secret base_url
+#   ip_ban_enabled: true
+#   login_attempts_threshold: 4
+
+# purge db after 3 days. problems with sqlite
+recorder:
+  purge_interval: 1
+  purge_keep_days: 3
+
+# Squeezebox
+media_player: !include media_players.yaml
+
+light: !include lights.yaml
+#light:
+#  - platform: hue
+#    host: 192.168.1.232
+
+# Checks for available updates
+updater:
+
+logger:
+  default: error
+  logs:
+    homeassistant.components.media_player: critical
+    urllib3.connectionpool: error
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Moon
+sensor moon:
+  - platform: moon
+
+sensor: !include sensors.yaml
+
+mqtt:
+  broker: 192.168.1.16
+  port: 1883
+  client_id: hassbian
+  keepalive: 60
+
+device_tracker: !include device_trackers.yaml
+
+switch: !include switches.yaml
+
+camera: !include cameras.yaml
+
+group: !include groups.yaml
+
+automation: !include automations.yaml
+
+discovery:
+
+#ios:
+
+verisure:
+    username: !secret vrname
+    password: !secret vrpwd
+
+input_boolean:
+  do_notify_on_porch_motion:
+    name: Send notifications on porch motions
+    initial: on
+  do_notify_on_back_porch_motion:
+    name: Send notifications on back porch motions
+    initial: on
+
+speedtestdotnet:
+  scan_interval:
+    hours: 1
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+

@@ -1,0 +1,192 @@
+- id: auto1
+  alias: Garden lights OFF when sun sets
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 00:05
+  action:
+  - entity_id: switch.garden_lights
+    service: switch.turn_on
+  mode: single
+- id: auto2
+  alias: Garden lights ON when sun rises
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: -00:12
+  - platform: sun
+    event: sunrise
+    offset: 00:15
+  action:
+  - service: switch.turn_off
+    entity_id: switch.garden_lights
+  mode: single
+- id: auto3
+  alias: Downstairs window lights OFF at sunset
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:05
+  - platform: sun
+    event: sunset
+    offset: 00:10
+  condition:
+  - before: '21:00:00'
+    condition: time
+  action:
+  - data:
+      entity_id: switch.window_lights_downstairs
+    service: switch.turn_on
+  mode: single
+- id: auto4
+  alias: Indoor lights OFF at night
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  - platform: time
+    at: '22:30:00'
+  action:
+  - data:
+      entity_id: group.indoor_lights
+    service: switch.turn_off
+  mode: single
+- id: '2522102616925'
+  alias: Aquarium lights OFF at night
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.aquarium_light
+  mode: single
+- id: auto5
+  alias: Garage lights ON when sun sets
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 00:25:00
+  action:
+  - data:
+      brightness: 190
+      entity_id: light.garage_lights
+    service: light.turn_on
+  mode: single
+- id: auto6
+  alias: Outdoor ceiling lights ON when sun sets
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 00:20:00
+  - platform: sun
+    event: sunset
+    offset: 00:22
+  action:
+  - data:
+      entity_id: light.out_ceil_lights
+    service: light.turn_on
+  mode: single
+- id: auto7
+  alias: Garage lights OFF when sun rises
+  trigger:
+  - platform: sun
+    event: sunrise
+  action:
+  - data:
+      entity_id: light.garage_lights
+    service: light.turn_off
+  mode: single
+- id: auto8
+  alias: Outdoor ceiling lights OFF when sun rises
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: -00:11
+  - platform: sun
+    event: sunrise
+  action:
+  - data:
+      entity_id: light.out_ceil_lights
+    service: light.turn_off
+  mode: single
+- id: auto9
+  alias: Notify Lars when door is opened
+  trigger:
+    platform: state
+    entity_id: sensor.front_door_opened
+  condition:
+    condition: state
+    entity_id: device_tracker.larsiphone
+    state: not_home
+  action:
+    service: notify.ios_larsiphone
+    data:
+      message: The front door has been opened!
+      data:
+        push:
+          sound: US-EN-Alexa-Front-Door-Opened.wav
+- id: '1511102616915'
+  alias: Upstairs window lights ON at night
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 00:30:00
+  - platform: sun
+    event: sunset
+    offset: 00:40:00
+  condition:
+  - condition: and
+    conditions:
+    - before: '21:00:00'
+      condition: time
+  action:
+  - data:
+      entity_id: switch.window_lights_upstairs
+    service: switch.turn_on
+  mode: single
+- id: '1551883696020'
+  alias: Notify Lars on porch motion
+  trigger:
+  - entity_id: sensor.porch_motion
+    platform: state
+  condition:
+  - condition: state
+    entity_id: input_boolean.do_notify_on_porch_motion
+    state: 'on'
+  - condition: state
+    entity_id: device_tracker.larsiphone
+    state: not_home
+  action:
+  - data:
+      message: Porch motion detected!
+    service: notify.ios_larsiphone
+  - data:
+      entity_id: input_boolean.do_notify_on_porch_motion
+    service: input_boolean.turn_off
+  - delay: 0:05
+  - data:
+      entity_id: input_boolean.do_notify_on_porch_motion
+    service: input_boolean.turn_on
+- id: '1553624963116'
+  alias: Notify Lars on back porch motion
+  trigger:
+  - entity_id: sensor.back_porch_last_motion
+    platform: state
+  condition:
+  - condition: state
+    entity_id: input_boolean.do_notify_on_back_porch_motion
+    state: 'on'
+  - condition: state
+    entity_id: device_tracker.larsiphone
+    state: not_home
+  action:
+  - data:
+      message: Back porch motion detected!
+    service: notify.ios_larsiphone
+  - data:
+      entity_id: input_boolean.do_notify_on_back_porch_motion
+    service: input_boolean.turn_off
+  - delay: 0:05
+  - data:
+      entity_id: input_boolean.do_notify_on_back_porch_motion
+    service: input_boolean.turn_on
+  mode: single

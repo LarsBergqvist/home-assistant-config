@@ -1,0 +1,93 @@
+#
+# Switch customizations
+#
+switch.window_lights_downstairs:
+  friendly_name: Windows downstairs
+  icon: mdi:lightbulb
+switch.wall_lights_downstairs:
+  friendly_name: Wall lights
+  icon: mdi:lightbulb
+switch.window_lights_upstairs:
+  friendly_name: Windows upstairs
+  icon: mdi:lightbulb
+switch.floor_light_upstairs:
+  friendly_name: Floor light
+  icon: mdi:lightbulb
+switch.garden_lights:
+  friendly_name: Garden lights
+  icon: mdi:lightbulb
+switch.dehumidifier:
+  friendly_name: Dehumidifier
+#
+# Sensor customizations
+#
+sensor.workroom_temp:
+  friendly_name: Work room temp
+  icon: mdi:thermometer
+sensor.top_floor_temp:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+sensor.top_floor_pressure:
+  friendly_name: Barometric pressure
+  icon: mdi:speedometer
+sensor.ground_bathroom_temp:
+  friendly_name: Bathroom Temperature
+  icon: mdi:thermometer
+sensor.ground_bathroom_humidity:
+  friendly_name: Bathroom Humidity
+  icon: mdi:water-percent
+sensor.ground_floor_temp:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+sensor.ground_floor_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.garden_temp:
+  friendly_name: Garden temperature
+  icon: mdi:thermometer
+sensor.porch_temp:
+  friendly_name: Porch temperature
+  icon: mdi:thermometer
+sensor.outdoor_temp:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+sensor.outdoor_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.garage_temp:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+sensor.garage_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.laundry_temp:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+sensor.laundry_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.yr_pressure:
+  friendly_name: yr Barometric pressure
+  icon: mdi:speedometer
+sensor.yr_wind_speed:
+  friendly_name: yr Wind speed
+  icon: mdi:weather-windy-variant
+sensor.yr_wind_direction:
+  friendly_name: yr Wind direction
+  icon: mdi:weather-windy-variant
+sensor.yr_cloudiness:
+  friendly_name: yr Cloudiness
+  icon: mdi:weather-cloudy
+sensor.yr_humidity:
+  friendly_name: yr Humidity
+  icon: mdi:water-percent
+sensor.hall_humidity:
+  friendly_name: Hall humidity
+  icon: mdi:water-percent
+sensor.allrum_overvaning_humidity:
+  friendly_name: Allrum humidity
+  icon: mdi:water-percent
+sensor.allrum_overvaning_temperature:
+  friendly_name: Allrum temperature
+  icon: mdi:thermometer
+

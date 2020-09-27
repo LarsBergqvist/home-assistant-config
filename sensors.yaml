@@ -1,0 +1,177 @@
+- platform: command_line
+  name: SSL cert expiry
+  unit_of_measurement: days
+  scan_interval: 10800
+  command: !secret cert_check_command
+# climate sensors
+- platform: mqtt
+  state_topic: "Home/Workroom/Temperature"
+  name: workroom_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/Porch/Temperature"
+  name: porch_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/GroundFloor/Bathroom/Temperature"
+  name: ground_bathroom_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/GroundFloor/Bathroom/Humidity"
+  name: ground_bathroom_humidity
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/GroundFloor/Temperature"
+  name: ground_floor_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/GroundFloor/Humidity"
+  name: ground_floor_humidity
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/Garden/Temperature"
+  name: garden_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/Outdoor/Temperature"
+  name: outdoor_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/Outdoor/Humidity"
+  name: outdoor_humidity
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/TopFloor/Temperature"
+  name: top_floor_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/TopFloor/Pressure"
+  name: top_floor_pressure
+  unit_of_measurement: "hPa"
+- platform: mqtt
+  state_topic: "Home/Garage/Temperature"
+  name: garage_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/Garage/Humidity"
+  name: garage_humidity
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/Laundry/Temperature"
+  name: laundry_temp
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/Laundry/Humidity"
+  name: laundry_humidity
+  unit_of_measurement: "%"
+
+# computer sensors
+- platform: mqtt
+  state_topic: "Home/RPI2/DownloadSpeed"
+  name: rpi2_downloadspeed
+  unit_of_measurement: "Mbit/s"
+- platform: mqtt
+  state_topic: "Home/RPI3/Temp"
+  name: rpi3_temperature
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/RPI3/CpuUsagePercent"
+  name: rpi3_cpu_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/RPI3/MemoryUsagePercent"
+  name: rpi3_memory_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/RPI2/Temp"
+  name: rpi2_temperature
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/RPI2/CpuUsagePercent"
+  name: rpi2_cpu_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/RPI2/MemoryUsagePercent"
+  name: rpi2_memory_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/RPI32/Temp"
+  name: rpi32_temperature
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/RPI32/CpuUsagePercent"
+  name: rpi32_cpu_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/RPI32/MemoryUsagePercent"
+  name: rpi32_memory_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/Hassbian/Temp"
+  name: hassbian_temperature
+  unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "Home/Hassbian/CpuUsagePercent"
+  name: hassbian_cpu_usage
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "Home/Hassbian/MemoryUsagePercent"
+  name: hassbian_memory_usage
+  unit_of_measurement: "%"
+
+# event sensors
+- platform: mqtt
+  state_topic: "Home/FrontDoor/Status"
+  name: front_door_opened
+- platform: mqtt
+  state_topic: "Home/Porch/Motion"
+  name: porch_motion
+- platform: mqtt
+  state_topic: "Home/BackPorch/Motion"
+  name: back_porch_motion
+
+# other
+- platform: time_date
+  display_options:
+    - 'date_time'
+
+# template sensors
+- platform: template
+  sensors:
+    alarm_state:
+      friendly_name: 'Alarm'
+      value_template: '{% if is_state("alarm_control_panel.husbyvagen_alarm", "armed_away") %}On{% elif is_state("alarm_control_panel.husbyvagen_alarm", "armed_home") %}On/Home{% else %}Off{% endif %}'
+      icon_template: '{% if is_state("alarm_control_panel.husbyvagen_alarm", "armed_away") %}mdi:lock{% elif is_state("alarm_control_panel.husbyvagen_alarm", "armed_home") %}mdi:lock-outline{% else %}mdi:lock-open{% endif %}'
+    altandorr_state:
+      friendly_name: 'Back door state'
+      value_template: '{% if is_state("binary_sensor.altandorr", "on") %}Open{% else %}Closed{% endif %}'
+      icon_template: '{% if is_state("binary_sensor.altandorr", "on") %}mdi:door-open{% else %}mdi:door-closed{% endif %}'
+    entredorr_state:
+      friendly_name: 'Front door state'
+      value_template: '{% if is_state("binary_sensor.entredorr", "on") %}Open{% else %}Closed{% endif %}'
+      icon_template: '{% if is_state("binary_sensor.entredorr", "on") %}mdi:door-open{% else %}mdi:door-closed{% endif %}'
+    door_last_opened:
+      friendly_name: 'Front door last opened'
+      icon_template: mdi:glassdoor
+      value_template: '{{ as_timestamp(states.sensor.front_door_opened.last_changed) | timestamp_custom("%a %H:%M", True) }}'
+    porch_last_motion:
+      friendly_name: 'Porch last motion'
+      icon_template: mdi:walk
+      value_template: '{{ as_timestamp(states.sensor.porch_motion.last_changed) | timestamp_custom("%a %H:%M", True) }}'
+    back_porch_last_motion:
+      friendly_name: 'B.porch last motion'
+      icon_template: mdi:walk
+      value_template: '{{ as_timestamp(states.sensor.back_porch_motion.last_changed) | timestamp_custom("%a %H:%M", True) }}'
+    day_night:
+      friendly_name: 'Day/Night'
+      value_template: '{% if is_state("sun.sun", "above_horizon") %}Day{% else %}Night{% endif %}'
+      icon_template: '{% if is_state("sun.sun", "above_horizon") %}mdi:weather-sunny{% else %}mdi:weather-night{% endif %}'
+    sunset:
+      friendly_name: 'Next sunset'
+      value_template: '{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%a %H:%M", True) }}'
+      icon_template: mdi:weather-sunset-down
+    sunrise:
+      friendly_name: 'Next sunrise'
+      value_template: '{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%a %H:%M", True) }}'
+      icon_template: mdi:weather-sunset-up
+
