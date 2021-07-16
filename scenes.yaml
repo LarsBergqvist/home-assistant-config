@@ -1,0 +1,47 @@
+- id: '1615924108146'
+  name: Movie time!
+  entities:
+    light.color1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: color1
+      supported_features: 63
+      state: 'off'
+    light.color2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: color2
+      supported_features: 63
+      state: 'off'
+    light.hue_lightstrip_plus_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - colorloop
+      - random
+      brightness: 255
+      hs_color:
+      - 38.667
+      - 52.941
+      rgb_color:
+      - 255
+      - 207
+      - 120
+      xy_color:
+      - 0.457
+      - 0.41
+      effect: none
+      friendly_name: Hue lightstrip plus 1
+      supported_features: 63
+      state: 'on'
+    switch.window_lights_downstairs:
+      friendly_name: Windows downstairs
+      icon: mdi:lightbulb
+      state: 'off'
+  icon: hass:play

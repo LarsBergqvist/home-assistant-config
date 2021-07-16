@@ -190,3 +190,15 @@
       entity_id: input_boolean.do_notify_on_back_porch_motion
     service: input_boolean.turn_on
   mode: single
+- id: '1615921601388'
+  alias: Movie time on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.do_movie_time
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - scene: scene.movie_time
+  mode: single

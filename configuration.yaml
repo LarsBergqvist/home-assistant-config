@@ -1,5 +1,5 @@
 homeassistant:
-  name: Hasb
+  name: Hemma
   latitude: !secret latitude
   longitude: !secret longitude
   elevation: 38
@@ -33,7 +33,7 @@ recorder:
   purge_keep_days: 3
 
 # Squeezebox
-media_player: !include media_players.yaml
+# media_player: !include media_players.yaml
 
 light: !include lights.yaml
 #light:
@@ -73,7 +73,7 @@ mqtt:
   client_id: hassbian
   keepalive: 60
 
-device_tracker: !include device_trackers.yaml
+# device_tracker: !include device_trackers.yaml
 
 switch: !include switches.yaml
 
@@ -83,13 +83,15 @@ group: !include groups.yaml
 
 automation: !include automations.yaml
 
+scene: !include scenes.yaml
+
 discovery:
 
 #ios:
 
 verisure:
-    username: !secret vrname
-    password: !secret vrpwd
+  username: !secret vrname
+  password: !secret vrpwd
 
 input_boolean:
   do_notify_on_porch_motion:
@@ -98,6 +100,9 @@ input_boolean:
   do_notify_on_back_porch_motion:
     name: Send notifications on back porch motions
     initial: on
+  do_movie_time:
+    name: Movie time on
+    initial: off
 
 speedtestdotnet:
   scan_interval:

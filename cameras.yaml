@@ -1,18 +1,14 @@
 - platform: mjpeg
-  mjpeg_url: http://192.168.1.20:8081
-  name: outdoor1
-  username: !secret motion_user
-  password: !secret motion_pwd
-- platform: mjpeg
   mjpeg_url: http://192.168.1.17:8081
   name: outdoor2
   username: !secret motion_user
   password: !secret motion_pwd
-#- platform: rpi_camera
-#  name: rpi
-#  timelapse: 1000
-#- platform: mjpeg
-#  mjpeg_url: http://192.168.1.18:8081
-#  name: aqua_cam
-#  username: !secret motion_user
-#  password: !secret motion_pwd
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.124:8081
+  name: motioneye
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.124:8082
+  name: motioneye2
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.124:8083
+  name: motioneye3
