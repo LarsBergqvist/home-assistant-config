@@ -42,7 +42,7 @@
   alias: Indoor lights OFF at night
   trigger:
   - platform: time
-    at: '22:00:00'
+    at: '21:30:00'
   - platform: time
     at: '22:30:00'
   action:

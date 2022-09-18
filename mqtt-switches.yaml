@@ -1,0 +1,10 @@
+# MQTT switches (for Telldus via Node-RED)
+- unique_id: Telldus1
+  name: "Telldus 1"
+  command_topic: "Telldus/Outlet/16"
+- unique_id: Telldus2
+  name: "Telldus 2"
+  command_topic: "Telldus/Outlet/15"
+- unique_id: AquariumLight
+  name: "Aquarium light"
+  command_topic: "Telldus/Outlet/14"

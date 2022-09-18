@@ -25,14 +25,3 @@
   body_on: 'on'
   body_off: 'off'
 
-# MQTT switches (for Telldus via Node-RED)
-- platform: mqtt
-  name: "Telldus 1"
-  command_topic: "Telldus/Outlet/16"
-- platform: mqtt
-  name: "Telldus 2"
-  command_topic: "Telldus/Outlet/15"
-- platform: mqtt
-  name: "Aquarium light"
-  command_topic: "Telldus/Outlet/14"
-

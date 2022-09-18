@@ -40,9 +40,6 @@ light: !include lights.yaml
 #  - platform: hue
 #    host: 192.168.1.232
 
-# Checks for available updates
-updater:
-
 logger:
   default: error
   logs:
@@ -72,6 +69,8 @@ mqtt:
   port: 1883
   client_id: hassbian
   keepalive: 60
+  switch: !include mqtt-switches.yaml
+  sensor: !include mqtt-sensors.yaml
 
 # device_tracker: !include device_trackers.yaml
 
